@@ -1,0 +1,1 @@
+ C:\\Users\\user\\Documents\\Android\ Project\\worktimer\\.dart_tool\\flutter_build\\d353f7062dd743fdd54f3f116c68c741\\native_assets.yaml: 
