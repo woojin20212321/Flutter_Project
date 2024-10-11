@@ -37,7 +37,7 @@ class App extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           const Text(
-                            'Hey, Selena',
+                            'Hi! 채봉',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 38,
@@ -115,7 +115,7 @@ class App extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  CurrencyCard(
+                  const CurrencyCard(
                     name: 'Euro',
                     code: 'EUR',
                     amount: '6 428',
@@ -123,8 +123,8 @@ class App extends StatelessWidget {
                     isInverted: false,
                   ),
                   Transform.translate(
-                    offset: Offset(0, -20),
-                    child: CurrencyCard(
+                    offset: const Offset(0, -20),
+                    child: const CurrencyCard(
                       name: 'Bitcoin',
                       code: "BTC",
                       amount: '9 785',
@@ -133,8 +133,8 @@ class App extends StatelessWidget {
                     ),
                   ),
                   Transform.translate(
-                    offset: Offset(0, -40),
-                    child: CurrencyCard(
+                    offset: const Offset(0, -40),
+                    child: const CurrencyCard(
                       name: 'Dollar',
                       code: "USD",
                       amount: '428',
