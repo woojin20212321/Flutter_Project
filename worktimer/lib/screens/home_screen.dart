@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,14 +10,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const twentyFiveMinutes = 1500;
+  static const twentyFiveMinutes = 5;
   int totalSeconds = twentyFiveMinutes;
   late Timer timer;
   bool isRunning = false;
   int totalPomodors = 0;
+  AudioPlayer audioPlayer = AudioPlayer();
 
   void onTick(Timer timer) {
     if (totalSeconds == 0) {
+      audioPlayer.play(AssetSource('ring.mp3'));
       setState(() {
         totalPomodors = totalPomodors + 1;
         isRunning = false;
@@ -31,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onStartPressed() {
-    timer = Timer.periodic(Duration(seconds: 1), onTick);
+    timer = Timer.periodic(const Duration(seconds: 1), onTick);
     setState(() {
       isRunning = true;
     });
@@ -52,6 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
       totalPomodors = 0;
     });
   }
+
+  void ring() {}
 
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
@@ -98,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     iconSize: 40,
                     color: Theme.of(context).cardColor,
                     onPressed: reset,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.stop_circle_outlined,
                     ),
                   ),
@@ -114,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.vertical(
+                      borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(40),
                       ),
                     ),
