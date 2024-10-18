@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const twentyFiveMinutes = 5;
+  static const twentyFiveMinutes = 1500;
   int totalSeconds = twentyFiveMinutes;
   late Timer timer;
   bool isRunning = false;
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onTick(Timer timer) {
     if (totalSeconds == 0) {
-      audioPlayer.play(AssetSource('ring.mp3'));
+      audioPlayer.play(AssetSource('bark.mp3'));
       setState(() {
         totalPomodors = totalPomodors + 1;
         isRunning = false;
@@ -55,8 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
       totalPomodors = 0;
     });
   }
-
-  void ring() {}
 
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
