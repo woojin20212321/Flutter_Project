@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomo/screens/Login_screen.dart';
-import 'package:pomo/screens/Timer_screen.dart';
+import 'package:pomo/screens/login_screen.dart';
+import 'package:pomo/screens/timer_screen.dart';
 
 void main() {
   runApp(const Pomo());

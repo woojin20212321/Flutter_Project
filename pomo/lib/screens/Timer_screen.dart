@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomo/main.dart';
+import 'package:pomo/screens/Login_screen.dart';
+import 'package:pomo/screens/menu_screen.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -9,12 +10,25 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
+  void openMenu() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const MenuScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightGreen[200],
       appBar: AppBar(
         backgroundColor: Colors.green[400],
+        title: IconButton(
+          onPressed: openMenu,
+          icon: Icon(Icons.menu_rounded),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(7.0),

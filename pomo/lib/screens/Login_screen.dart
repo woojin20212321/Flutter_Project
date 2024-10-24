@@ -5,25 +5,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            children: [
-              SizedBox(height: 160),
-              Icon(
-                Icons.login_outlined,
-                size: 130,
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              TextField(),
-            ],
-          ),
-        ],
-      ),
-    );
+    return Scaffold();
   }
 }
