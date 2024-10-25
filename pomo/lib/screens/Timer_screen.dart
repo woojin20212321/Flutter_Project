@@ -101,7 +101,7 @@ class _TimerScreenState extends State<TimerScreen> {
                     flex: 5,
                     fit: FlexFit.tight,
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1,
+                      width: 400.w,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15)),
@@ -127,7 +127,7 @@ class _TimerScreenState extends State<TimerScreen> {
                     flex: 5,
                     fit: FlexFit.tight,
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1,
+                      width: 400.w,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15)),
