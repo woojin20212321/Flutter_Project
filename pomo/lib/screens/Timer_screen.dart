@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:pomo/screens/Login_screen.dart';
 import 'package:pomo/screens/menu_screen.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -10,6 +13,58 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
+  static const twentyFiveMinutes = 1500;
+  int totalSeconds = twentyFiveMinutes;
+  late Timer timer;
+  bool isRunning = false;
+  int totalPomodors = 0;
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  void onTick(Timer timer) {
+    if (totalSeconds == 0) {
+      audioPlayer.play(AssetSource('ring.mp3'));
+      setState(() {
+        totalPomodors = totalPomodors + 1;
+        isRunning = false;
+        totalSeconds = 1500;
+      });
+      timer.cancel();
+    } else {
+      setState(() {
+        totalSeconds = totalSeconds - 1;
+      });
+    }
+  }
+
+  void onStartPressed() {
+    timer = Timer.periodic(const Duration(seconds: 1), onTick);
+    setState(() {
+      isRunning = true;
+    });
+  }
+
+  void onpausePressed() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+    });
+  }
+
+  void reset() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+      totalSeconds = twentyFiveMinutes;
+      totalPomodors = 0;
+    });
+  }
+
+  String format(int seconds) {
+    var duration = Duration(seconds: seconds);
+    print('$duration');
+    return duration.toString().split(".").first.substring(2, 7);
+  }
+
   void openMenu() {
     Navigator.push(
       context,
@@ -24,7 +79,7 @@ class _TimerScreenState extends State<TimerScreen> {
     return Scaffold(
       backgroundColor: Colors.lightGreen[200],
       appBar: AppBar(
-        backgroundColor: Colors.green[400],
+        backgroundColor: Colors.green[300],
         title: IconButton(
           onPressed: openMenu,
           icon: Icon(Icons.menu_rounded),
@@ -46,7 +101,7 @@ class _TimerScreenState extends State<TimerScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '25:00',
+                      format(totalSeconds),
                       style: TextStyle(
                         color: Colors.green[400],
                         fontSize: 120,
@@ -82,7 +137,7 @@ class _TimerScreenState extends State<TimerScreen> {
                           color: Colors.green[400]),
                     ),
                     Text(
-                      '0',
+                      '$totalPomodors',
                       style: TextStyle(
                           fontSize: 120,
                           fontWeight: FontWeight.w500,
@@ -95,7 +150,33 @@ class _TimerScreenState extends State<TimerScreen> {
             Flexible(
               flex: 1,
               fit: FlexFit.tight,
-              child: SizedBox(),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 60,
+                    ),
+                    IconButton(
+                      onPressed: isRunning ? onpausePressed : onStartPressed,
+                      icon: Icon(
+                        isRunning
+                            ? Icons.pause_circle_outlined
+                            : Icons.play_circle_outlined,
+                        size: 60,
+                        color: Colors.green[600],
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: reset,
+                      icon: Icon(
+                        Icons.stop_circle_outlined,
+                        size: 40,
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ],
         ),
