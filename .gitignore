@@ -36,4 +36,4 @@ doc/api/
 
 # End of https://www.toptal.com/developers/gitignore/api/dart
 
-AdMob Pomo.txt
+*.AdMob Pomo.txt
