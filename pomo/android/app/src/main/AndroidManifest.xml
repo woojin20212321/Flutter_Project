@@ -5,8 +5,8 @@
         android:icon="@mipmap/ic_launcher">
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:name="com.google.android.gms.ads.PomodoDragon"
+            android:value="ca-app-pub-3382301813733969/4045332074"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

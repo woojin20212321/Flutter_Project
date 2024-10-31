@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pomo/screens/login_screen.dart';
 import 'package:pomo/screens/timer_screen.dart';
-import 'firebase_options.dart';
-import "package:firebase_core/firebase_core.dart";
 
 void main() {
-  runApp(const Pomo());
+  runApp(
+    const Pomo(),
+  );
 }
 
 Future<void> initServices() async {

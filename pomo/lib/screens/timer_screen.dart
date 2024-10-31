@@ -6,6 +6,7 @@ import 'package:pomo/screens/menu_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:pomo/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pomo/screens/option_screen.dart' as option;
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -28,7 +29,7 @@ class _TimerScreenState extends State<TimerScreen> {
       setState(() {
         totalPomodors = totalPomodors + 1;
         isRunning = false;
-        totalSeconds = 1500;
+        totalSeconds = twentyFiveMinutes;
       });
       timer.cancel();
     } else {
@@ -87,10 +88,23 @@ class _TimerScreenState extends State<TimerScreen> {
             backgroundColor: Colors.lightGreen[200],
             appBar: AppBar(
               backgroundColor: Colors.green[300],
-              title: IconButton(
-                onPressed: openMenu,
-                icon: Icon(Icons.menu_rounded),
-                iconSize: 25.w.h,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: openMenu,
+                    icon: Icon(Icons.menu_rounded),
+                    iconSize: 25.w.h,
+                  ),
+                  Icon(
+                    Icons.access_time_rounded,
+                    color: Colors.green[900],
+                    size: 35.w,
+                  ),
+                  SizedBox(
+                    width: 45.w,
+                  ),
+                ],
               ),
             ),
             body: Padding(
@@ -181,6 +195,7 @@ class _TimerScreenState extends State<TimerScreen> {
                             icon: Icon(
                               Icons.stop_circle_outlined,
                               size: 40.w,
+                              color: Colors.white,
                             ),
                           )
                         ],
