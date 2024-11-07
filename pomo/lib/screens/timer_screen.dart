@@ -9,7 +9,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pomo/screens/option_screen.dart' as option;
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {
+  /*double workTimeValue;
+  double breakTimeValue;
+  TimerScreen(this.workTimeValue, this.breakTimeValue, {super.key}); */
   const TimerScreen({super.key});
 
   @override
@@ -23,6 +27,8 @@ class _TimerScreenState extends State<TimerScreen> {
   int totalPomodors = 0;
   AudioPlayer audioPlayer = AudioPlayer();
   bool worktime = true;
+
+  static get workTimeValue => null;
 
   void onTick(Timer timer) {
     if (totalSeconds == 0) {

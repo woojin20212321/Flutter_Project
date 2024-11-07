@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pomo/screens/timer_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,9 +17,18 @@ class OptionScreen extends StatefulWidget {
 }
 
 class _OptionScreenState extends State<OptionScreen> {
-  double currentValue = 1500.0;
-  int time = 1500;
+  double workTimeValue = 1500.0;
+  double breakTimeValue = 300.0;
+  int optionWorkTime = 25;
+  int optionBreakTime = 5;
   late SharedPreferences prefs;
+
+  void save() {
+    /*Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => TimerScreen(workTimeValue, breakTimeValue)),*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +56,58 @@ class _OptionScreenState extends State<OptionScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '타이머 설정',
+                      '워크 타임 설정',
                       style: TextStyle(
                         fontSize: 20.w,
                       ),
                     ),
                     SizedBox(),
-                    Text('$time'),
+                    Text('$optionWorkTime'),
                     SizedBox()
                   ],
                 ),
                 Slider(
-                  value: currentValue,
+                  value: workTimeValue,
+                  max: 7200,
+                  divisions: 60,
+                  onChanged: (value) => setState(() {
+                    workTimeValue = value;
+                    optionWorkTime = workTimeValue.toInt();
+                    optionWorkTime = (optionWorkTime / 60).floor();
+                  }),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '브레이크 타임 설정',
+                      style: TextStyle(
+                        fontSize: 20.w,
+                      ),
+                    ),
+                    SizedBox(),
+                    Text('$optionBreakTime'),
+                    SizedBox()
+                  ],
+                ),
+                Slider(
+                  value: breakTimeValue,
                   max: 3600,
                   divisions: 60,
                   onChanged: (value) => setState(() {
-                    currentValue = value;
-                    time = currentValue.toInt();
+                    breakTimeValue = value;
+                    optionBreakTime = breakTimeValue.toInt();
+                    optionBreakTime = (optionBreakTime / 60).floor();
                   }),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(onPressed: save, child: Text('저장')),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                  ],
                 ),
               ],
             ),
