@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pomo/screens/timer_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OptionScreen extends StatefulWidget {
   const OptionScreen({
@@ -16,6 +18,8 @@ class OptionScreen extends StatefulWidget {
 class _OptionScreenState extends State<OptionScreen> {
   double currentValue = 1500.0;
   int time = 1500;
+  late SharedPreferences prefs;
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -39,20 +43,17 @@ class _OptionScreenState extends State<OptionScreen> {
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 30.w,
-                    ),
                     Text(
                       '타이머 설정',
                       style: TextStyle(
                         fontSize: 20.w,
                       ),
                     ),
-                    SizedBox(
-                      width: 30.w,
-                    ),
+                    SizedBox(),
                     Text('$time'),
+                    SizedBox()
                   ],
                 ),
                 Slider(

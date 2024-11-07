@@ -7,6 +7,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:pomo/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pomo/screens/option_screen.dart' as option;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -16,22 +17,36 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
-  static const twentyFiveMinutes = 1500;
-  int totalSeconds = twentyFiveMinutes;
+  int totalSeconds = 1500;
   late Timer timer;
   bool isRunning = false;
   int totalPomodors = 0;
   AudioPlayer audioPlayer = AudioPlayer();
+  bool worktime = true;
 
   void onTick(Timer timer) {
     if (totalSeconds == 0) {
       audioPlayer.play(AssetSource('ring.mp3'));
+
       setState(() {
         totalPomodors = totalPomodors + 1;
         isRunning = false;
-        totalSeconds = twentyFiveMinutes;
+        breakTime();
       });
       timer.cancel();
+    } else {
+      setState(() {
+        totalSeconds = totalSeconds - 1;
+      });
+    }
+  }
+
+  void breakTime() {
+    totalSeconds = 300;
+    worktime = false;
+    if (totalSeconds == 0) {
+      audioPlayer.play(AssetSource('ring.mp3'));
+      setState(() {});
     } else {
       setState(() {
         totalSeconds = totalSeconds - 1;
@@ -43,6 +58,7 @@ class _TimerScreenState extends State<TimerScreen> {
     timer = Timer.periodic(const Duration(seconds: 1), onTick);
     setState(() {
       isRunning = true;
+      worktime = true;
     });
   }
 
@@ -57,7 +73,7 @@ class _TimerScreenState extends State<TimerScreen> {
     timer.cancel();
     setState(() {
       isRunning = false;
-      totalSeconds = twentyFiveMinutes;
+      totalSeconds = 1500;
       totalPomodors = 0;
     });
   }
@@ -122,6 +138,14 @@ class _TimerScreenState extends State<TimerScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Text(
+                            worktime ? 'worktime!' : 'breaktime',
+                            style: TextStyle(
+                              fontSize: 25.w,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green[400],
+                            ),
+                          ),
                           Text(
                             format(totalSeconds),
                             style: TextStyle(
