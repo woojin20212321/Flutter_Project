@@ -23,17 +23,11 @@ class _OptionScreenState extends State<OptionScreen> {
   int optionBreakTime = 5;
   late SharedPreferences prefs;
 
-  void save() {
-    /*Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => TimerScreen(workTimeValue, breakTimeValue)),*/
-  }
-
+  void save() {}
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(360, 800),
+      designSize: Size(360, 800),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -41,6 +35,9 @@ class _OptionScreenState extends State<OptionScreen> {
           backgroundColor: Colors.lightGreen[100],
           appBar: AppBar(
             backgroundColor: Colors.green[300],
+            actions: [
+              IconButton(onPressed: save, icon: Icon(Icons.save_outlined))
+            ],
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
@@ -56,7 +53,7 @@ class _OptionScreenState extends State<OptionScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '워크 타임 설정',
+                      '공부 타임 설정',
                       style: TextStyle(
                         fontSize: 20.w,
                       ),
@@ -80,7 +77,7 @@ class _OptionScreenState extends State<OptionScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '브레이크 타임 설정',
+                      '휴식 타임 설정',
                       style: TextStyle(
                         fontSize: 20.w,
                       ),
@@ -99,15 +96,6 @@ class _OptionScreenState extends State<OptionScreen> {
                     optionBreakTime = breakTimeValue.toInt();
                     optionBreakTime = (optionBreakTime / 60).floor();
                   }),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(onPressed: save, child: Text('저장')),
-                    SizedBox(
-                      width: 15.w,
-                    ),
-                  ],
                 ),
               ],
             ),

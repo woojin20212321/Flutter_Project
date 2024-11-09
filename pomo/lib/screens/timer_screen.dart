@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pomo/screens/Login_screen.dart';
 import 'package:pomo/screens/menu_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:pomo/main.dart';
@@ -11,10 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {
-  /*double workTimeValue;
-  double breakTimeValue;
-  TimerScreen(this.workTimeValue, this.breakTimeValue, {super.key}); */
   const TimerScreen({super.key});
+  // const TimerScreen({super.key});
 
   @override
   State<TimerScreen> createState() => _TimerScreenState();
@@ -27,9 +24,6 @@ class _TimerScreenState extends State<TimerScreen> {
   int totalPomodors = 0;
   AudioPlayer audioPlayer = AudioPlayer();
   bool worktime = true;
-
-  static get workTimeValue => null;
-
   void onTick(Timer timer) {
     if (totalSeconds == 0) {
       audioPlayer.play(AssetSource('ring.mp3'));
