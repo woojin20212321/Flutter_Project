@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:pomo/screens/timer_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OptionScreen extends StatefulWidget {
   const OptionScreen({
@@ -21,7 +18,6 @@ class _OptionScreenState extends State<OptionScreen> {
   double breakTimeValue = 300.0;
   int optionWorkTime = 25;
   int optionBreakTime = 5;
-  late SharedPreferences prefs;
 
   void save() {}
   @override
@@ -36,7 +32,7 @@ class _OptionScreenState extends State<OptionScreen> {
           appBar: AppBar(
             backgroundColor: Colors.green[300],
             actions: [
-              IconButton(onPressed: save, icon: Icon(Icons.save_outlined))
+              IconButton(onPressed: save, icon: const Icon(Icons.save_outlined))
             ],
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

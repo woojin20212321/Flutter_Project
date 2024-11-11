@@ -5,8 +5,6 @@ import 'package:pomo/screens/menu_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:pomo/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pomo/screens/option_screen.dart' as option;
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {

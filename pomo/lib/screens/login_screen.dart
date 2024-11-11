@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:path/path.dart';
+import 'package:pomo/screens/adduser_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  void openAddUser() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AdduserScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +55,17 @@ class LoginScreen extends StatelessWidget {
                       width: double
                           .infinity, // 사이즈는 고정값을 넣는것은 좋지않다(기기마다 사이즈가 다르므로)
                       margin: const EdgeInsets.only(top: 16), // 위쪽에만 간격을 준다.
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text('로그인'),
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text('로그인'),
+                          ),
+                          ElevatedButton(
+                            onPressed: (openAddUser),
+                            child: Text('회원가입'),
+                          ),
+                        ],
                       ),
                     ),
                   ],
