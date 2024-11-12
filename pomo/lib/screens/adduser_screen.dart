@@ -25,9 +25,8 @@ class _AdduserScreenState extends State<AdduserScreen> {
               ),
             ),
             body: SingleChildScrollView(
-              // SingleChildScrollView : 스크롤 자동으로 방지처리되게 해주는 녀석
               child: Padding(
-                padding: const EdgeInsets.all(16), // padding 값으로 여백 추가
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
                     SizedBox(
@@ -48,9 +47,8 @@ class _AdduserScreenState extends State<AdduserScreen> {
                       decoration: InputDecoration(labelText: '비밀번호'),
                     ),
                     Container(
-                      width: double
-                          .infinity, // 사이즈는 고정값을 넣는것은 좋지않다(기기마다 사이즈가 다르므로)
-                      margin: const EdgeInsets.only(top: 16), // 위쪽에만 간격을 준다.
+                      width: double.infinity,
+                      margin: const EdgeInsets.only(top: 16),
                       child: Column(
                         children: [
                           ElevatedButton(
