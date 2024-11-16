@@ -73,7 +73,7 @@ class _TimerScreenState extends State<TimerScreen> {
     timer.cancel();
     setState(() {
       isRunning = false;
-      totalSeconds = 1500;
+      totalSeconds = totalSeconds();
       totalPomodors = 0;
     });
   }
@@ -147,7 +147,7 @@ class _TimerScreenState extends State<TimerScreen> {
                             ),
                           ),
                           Text(
-                            format(timeSet.getTime()),
+                            format(totalSeconds),
                             style: TextStyle(
                               color: Colors.green[400],
                               fontSize: 100.w,
