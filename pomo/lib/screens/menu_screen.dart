@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pomo/screens/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pomo/screens/option_screen.dart';
 
@@ -12,11 +11,6 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   void tapReturn() {}
-
-  void openLogin() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginScreen()));
-  }
 
   void openOption() {
     Navigator.push(
@@ -49,16 +43,6 @@ class _MenuScreenState extends State<MenuScreen> {
                   children: [
                     SizedBox(
                       height: 50.h,
-                    ),
-                    TextButton(
-                      onPressed: openLogin,
-                      child: Text(
-                        '로그인',
-                        style: TextStyle(
-                            fontSize: 30.w,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.green[500]),
-                      ),
                     ),
                     TextButton(
                       onPressed: openOption,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pomo/screens/login_screen.dart';
 import 'package:pomo/screens/timer_screen.dart';
 
 void main() {
