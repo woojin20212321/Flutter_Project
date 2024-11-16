@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pomo/provider/time_set.dart';
+import 'package:provider/provider.dart';
 
 class OptionScreen extends StatefulWidget {
   const OptionScreen({
@@ -14,12 +16,17 @@ class OptionScreen extends StatefulWidget {
 }
 
 class _OptionScreenState extends State<OptionScreen> {
-  double workTimeValue = 1500.0;
-  double breakTimeValue = 300.0;
-  int optionWorkTime = 25;
+  late TimeSet timeSet = Provider.of<TimeSet>(context);
+  late int timerValue = timeSet.getTime();
+
   int optionBreakTime = 5;
 
-  void save() {}
+  String format(int seconds) {
+    var duration = Duration(seconds: seconds);
+    print('$duration');
+    return duration.toString().split(".").first.substring(2, 4);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -32,7 +39,8 @@ class _OptionScreenState extends State<OptionScreen> {
           appBar: AppBar(
             backgroundColor: Colors.green[300],
             actions: [
-              IconButton(onPressed: save, icon: const Icon(Icons.save_outlined))
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.save_outlined))
             ],
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,31 +57,27 @@ class _OptionScreenState extends State<OptionScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '공부 타임 설정',
+                      '타이머 설정',
                       style: TextStyle(
                         fontSize: 20.w,
                       ),
                     ),
+                    IconButton(
+                        onPressed: timeSet.decrement,
+                        icon: Icon(Icons.minimize_rounded)),
                     SizedBox(),
-                    Text('$optionWorkTime'),
-                    SizedBox()
+                    Text(format(timeSet.getTime())),
+                    SizedBox(),
+                    IconButton(
+                        onPressed: timeSet.increment,
+                        icon: Icon(Icons.add_box_rounded)),
                   ],
-                ),
-                Slider(
-                  value: workTimeValue,
-                  max: 7200,
-                  divisions: 60,
-                  onChanged: (value) => setState(() {
-                    workTimeValue = value;
-                    optionWorkTime = workTimeValue.toInt();
-                    optionWorkTime = (optionWorkTime / 60).floor();
-                  }),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '휴식 타임 설정',
+                      '휴식 타이머 설정',
                       style: TextStyle(
                         fontSize: 20.w,
                       ),
@@ -82,16 +86,6 @@ class _OptionScreenState extends State<OptionScreen> {
                     Text('$optionBreakTime'),
                     SizedBox()
                   ],
-                ),
-                Slider(
-                  value: breakTimeValue,
-                  max: 3600,
-                  divisions: 60,
-                  onChanged: (value) => setState(() {
-                    breakTimeValue = value;
-                    optionBreakTime = breakTimeValue.toInt();
-                    optionBreakTime = (optionBreakTime / 60).floor();
-                  }),
                 ),
               ],
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pomo/provider/time_set.dart';
 import 'package:pomo/screens/timer_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
@@ -20,12 +22,19 @@ class Pomo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.green[300],
-        focusColor: Colors.greenAccent[400],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) {
+          return TimeSet();
+        })
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.green[300],
+          focusColor: Colors.greenAccent[400],
+        ),
+        home: TimerScreen(),
       ),
-      home: TimerScreen(),
     );
   }
 }

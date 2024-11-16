@@ -1,22 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pomo/provider/time_set.dart';
 import 'package:pomo/screens/menu_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:pomo/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
-  // const TimerScreen({super.key});
 
   @override
   State<TimerScreen> createState() => _TimerScreenState();
 }
 
 class _TimerScreenState extends State<TimerScreen> {
-  int totalSeconds = 1500;
+  late TimeSet timeSet = Provider.of<TimeSet>(context);
+  late int totalSeconds = timeSet.getTime();
   late Timer timer;
   bool isRunning = false;
   int totalPomodors = 0;
@@ -145,7 +147,7 @@ class _TimerScreenState extends State<TimerScreen> {
                             ),
                           ),
                           Text(
-                            format(totalSeconds),
+                            format(timeSet.getTime()),
                             style: TextStyle(
                               color: Colors.green[400],
                               fontSize: 100.w,
