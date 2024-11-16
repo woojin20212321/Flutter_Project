@@ -73,7 +73,7 @@ class _TimerScreenState extends State<TimerScreen> {
     timer.cancel();
     setState(() {
       isRunning = false;
-      totalSeconds = totalSeconds();
+      totalSeconds = timeSet.getTime();
       totalPomodors = 0;
     });
   }
