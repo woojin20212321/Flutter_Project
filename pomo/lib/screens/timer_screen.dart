@@ -8,7 +8,6 @@ import 'package:pomo/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
 
