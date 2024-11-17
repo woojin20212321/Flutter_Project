@@ -19,12 +19,15 @@ class TimerScreen extends StatefulWidget {
 class _TimerScreenState extends State<TimerScreen> {
   late TimeSet timeSet = Provider.of<TimeSet>(context);
   late int totalSeconds = timeSet.getTime();
-  late Timer timer;
+  late int brkSeconds = timeSet.getbrkTime();
+  late Timer timer = Timer.periodic(const Duration(seconds: 1), onTick);
   bool isRunning = false;
   int totalPomodors = 0;
-  AudioPlayer audioPlayer = AudioPlayer();
   bool worktime = true;
+  AudioPlayer audioPlayer = AudioPlayer();
+
   void onTick(Timer timer) {
+    worktime = true;
     if (totalSeconds == 0) {
       audioPlayer.play(AssetSource('ring.mp3'));
 
@@ -42,7 +45,7 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   void breakTime() {
-    totalSeconds = 300;
+    totalSeconds = brkSeconds;
     worktime = false;
     if (totalSeconds == 0) {
       audioPlayer.play(AssetSource('ring.mp3'));
@@ -58,7 +61,6 @@ class _TimerScreenState extends State<TimerScreen> {
     timer = Timer.periodic(const Duration(seconds: 1), onTick);
     setState(() {
       isRunning = true;
-      worktime = true;
     });
   }
 
@@ -71,9 +73,11 @@ class _TimerScreenState extends State<TimerScreen> {
 
   void reset() {
     timer.cancel();
+    worktime = true;
     setState(() {
       isRunning = false;
       totalSeconds = timeSet.getTime();
+      brkSeconds = timeSet.getbrkTime();
       totalPomodors = 0;
     });
   }

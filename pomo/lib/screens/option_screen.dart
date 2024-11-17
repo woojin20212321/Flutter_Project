@@ -18,8 +18,7 @@ class OptionScreen extends StatefulWidget {
 class _OptionScreenState extends State<OptionScreen> {
   late TimeSet timeSet = Provider.of<TimeSet>(context);
   late int timerValue = timeSet.getTime();
-
-  int optionBreakTime = 5;
+  late int brktimerValue = timeSet.getbrkTime();
 
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
@@ -82,9 +81,15 @@ class _OptionScreenState extends State<OptionScreen> {
                         fontSize: 20.w,
                       ),
                     ),
+                    IconButton(
+                        onPressed: timeSet.decrementbrktime,
+                        icon: Icon(Icons.minimize_rounded)),
                     SizedBox(),
-                    Text('$optionBreakTime'),
-                    SizedBox()
+                    Text(format(timeSet.getbrkTime())),
+                    SizedBox(),
+                    IconButton(
+                        onPressed: timeSet.incrementbrktime,
+                        icon: Icon(Icons.add_box_rounded)),
                   ],
                 ),
               ],
