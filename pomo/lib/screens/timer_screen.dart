@@ -24,7 +24,6 @@ class _TimerScreenState extends State<TimerScreen> {
   int totalPomodors = 0;
   bool worktime = true;
   AudioPlayer audioPlayer = AudioPlayer();
-
   void onTick(Timer timer) {
     worktime = true;
     if (totalSeconds == 0) {

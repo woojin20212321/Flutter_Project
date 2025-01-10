@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pomo/provider/time_set.dart';
 import 'package:provider/provider.dart';
+import 'package:pomo/screens/timer_screen.dart' as timeScreen;
 
 class OptionScreen extends StatefulWidget {
   const OptionScreen({
@@ -26,6 +27,8 @@ class _OptionScreenState extends State<OptionScreen> {
     return duration.toString().split(".").first.substring(2, 4);
   }
 
+  void set() {}
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -38,8 +41,7 @@ class _OptionScreenState extends State<OptionScreen> {
           appBar: AppBar(
             backgroundColor: Colors.green[300],
             actions: [
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.save_outlined))
+              IconButton(onPressed: set, icon: const Icon(Icons.save_outlined))
             ],
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
